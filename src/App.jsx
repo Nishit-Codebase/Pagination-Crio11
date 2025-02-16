@@ -8,16 +8,21 @@ function App() {
   const Entrierperpage = 10;
 
   useEffect(()=>{
-    let employeedata = async () => {
-    try{
-
-      let response = await fetch("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json");
-      let data = await response.json();
-      setEmp(data);
-    }catch(e){
-      console.error("failed to fetch data",e);
-    }
-  }
+    const employeedata = async () => {
+      try {
+        let response = await fetch(
+          "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        let data = await response.json();
+        setEmp(data);
+      } catch (error) {
+        alert("Failed to fetch data",error); 
+      }
+    };
+  
   employeedata();
 
   },[])
