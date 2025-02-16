@@ -15,7 +15,7 @@ function App() {
       let data = await response.json();
       setEmp(data);
     }catch(e){
-      console.log(e);
+      console.log("failed to fetch data",e);
     }
   }
   employeedata();
@@ -25,10 +25,8 @@ function App() {
   const startIndex = (Pagenum - 1) * Entrierperpage;
   const displayedEmployees = Emp.slice(startIndex, startIndex + Entrierperpage);
   
-  // **Calculate total pages**
   const totalPages = Math.ceil(Emp.length / Entrierperpage);
 
-  // **Pagination Handlers**
   const nextPage = () => {
     if (Pagenum < totalPages) setPagenum(Pagenum + 1);
   };
@@ -64,7 +62,7 @@ function App() {
       </tbody>
      </table>
      <div className="pagination">
-          <button onClick={prevPage} disabled={Pagenum === 1}>
+          <button onClick={prevPage} >
             Previous
           </button>
           <span>
