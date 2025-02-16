@@ -15,7 +15,7 @@ function App() {
       let data = await response.json();
       setEmp(data);
     }catch(e){
-      console.log("failed to fetch data",e);
+      console.error("failed to fetch data",e);
     }
   }
   employeedata();
